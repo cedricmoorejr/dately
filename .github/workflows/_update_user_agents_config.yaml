@@ -1,12 +1,12 @@
 name: Update User Agents
 
-# on:
-#   workflow_dispatch: 
-#   push:
-#     branches:
-#       - v3.2.0
-#   schedule:
-#     - cron: '30 0 * * *'  # Run daily at midnight
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      - v3.2.0
+  schedule:
+    - cron: '30 0 * * *'  # Run daily at midnight
 
 jobs:
   update-user-agents:
