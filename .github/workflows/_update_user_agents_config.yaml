@@ -4,7 +4,7 @@ on:
   workflow_dispatch: 
   push:
     branches:
-      - v3.2.0
+      - v3.2.1
   schedule:
     - cron: '30 0 * * *'  # Run daily at midnight
 
