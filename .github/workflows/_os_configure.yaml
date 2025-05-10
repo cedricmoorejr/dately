@@ -2,12 +2,7 @@ name: Update OS Versions
 
 on:
   workflow_dispatch: 
-  schedule:
-    - cron: '0 0 * * *' 
-    
-  push:
-    branches:
-      - v3.2.1
+
 jobs:
   download-and-save:
     runs-on: ubuntu-latest
