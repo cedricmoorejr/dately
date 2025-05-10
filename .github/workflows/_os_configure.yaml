@@ -7,7 +7,7 @@ on:
     
   push:
     branches:
-      - v3.2.3
+      - v3.2.4
 jobs:
   download-and-save:
     runs-on: ubuntu-latest
