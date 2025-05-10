@@ -2,10 +2,7 @@ name: Update OS Versions
 
 on:
   workflow_dispatch: 
-    
-  push:
-    branches:
-      - v3.2.1
+
 jobs:
   download-and-save:
     runs-on: ubuntu-latest
