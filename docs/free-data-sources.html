@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Dately — Free Data Files and Download Locations</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --surface: #fffdf8;
+      --surface-2: #eee9de;
+      --ink: #26251f;
+      --muted: #69665c;
+      --line: #d8d2c5;
+      --accent: #087f6c;
+      --accent-2: #065f52;
+      --accent-soft: #dff3ed;
+      --gold: #9a6700;
+      --gold-soft: #fff0c2;
+      --blue: #245ea8;
+      --blue-soft: #e4efff;
+      --shadow: 0 18px 42px rgba(54, 48, 35, .09);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151713;
+        --surface: #1e211c;
+        --surface-2: #282c25;
+        --ink: #f2f1e9;
+        --muted: #bbbdb1;
+        --line: #3b4037;
+        --accent: #72d7bd;
+        --accent-2: #a1ead6;
+        --accent-soft: #183c33;
+        --gold: #f3c85d;
+        --gold-soft: #443817;
+        --blue: #8bb9f5;
+        --blue-soft: #1e3451;
+        --shadow: 0 18px 42px rgba(0, 0, 0, .22);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% -10%, var(--accent-soft), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent-2); text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    code, .filename {
+      font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+      font-size: .92em;
+    }
+    .page { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 70px 0 38px; }
+    .eyebrow {
+      color: var(--accent-2);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 850px;
+      margin: 10px 0 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.45rem, 6vw, 5.6rem);
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+    .lede { max-width: 760px; margin: 0; color: var(--muted); font-size: 1.13rem; }
+    .stamp { margin-top: 16px; color: var(--muted); font-size: .83rem; }
+    .callout {
+      margin: 22px 0 0;
+      padding: 16px 18px;
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+    }
+    nav {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-block: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    nav .page { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; }
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    nav a:hover { color: var(--ink); background: var(--surface-2); }
+    main { padding: 36px 0 80px; }
+    section { scroll-margin-top: 72px; margin: 0 0 56px; }
+    h2 { margin: 0 0 8px; font-size: clamp(1.55rem, 3vw, 2.25rem); letter-spacing: -.025em; }
+    .section-intro { max-width: 820px; margin: 0 0 22px; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .card.wide { grid-column: 1 / -1; }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+    .number {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--surface);
+      font-size: .8rem;
+      font-weight: 850;
+    }
+    .card h3 { margin: 10px 0 5px; font-size: 1.27rem; line-height: 1.25; }
+    .card p { margin: 7px 0; }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: .72rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .tag.license { background: var(--gold-soft); color: var(--gold); }
+    .file-list { display: grid; gap: 9px; margin-top: 16px; }
+    .file {
+      display: grid;
+      grid-template-columns: minmax(190px, .8fr) minmax(240px, 1.2fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+    .file:first-child { border-top: 0; }
+    .file-note { color: var(--muted); font-size: .88rem; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 9px;
+      color: var(--accent-2);
+      font-size: .82rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .button:hover { background: var(--accent-soft); }
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .step { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+    .step strong { display: block; margin-bottom: 6px; }
+    .arrow { align-self: center; color: var(--accent); font-size: 1.7rem; font-weight: 900; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--surface-2); color: var(--muted); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .yes { color: var(--accent-2); font-weight: 800; }
+    .no { color: var(--gold); font-weight: 800; }
+    .codebox {
+      margin-top: 18px;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #101713;
+      color: #d5f3e8;
+      font: .9rem/1.75 "Cascadia Code", Consolas, monospace;
+      white-space: pre;
+    }
+    .fine-print { font-size: .84rem; color: var(--muted); }
+    footer { padding: 26px 0 55px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    @media (max-width: 780px) {
+      .hero { padding-top: 45px; }
+      .grid { grid-template-columns: 1fr; }
+      .card.wide { grid-column: auto; }
+      .file { grid-template-columns: 1fr; gap: 5px; }
+      .button { justify-self: start; }
+      .decision { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); justify-self: center; }
+    }
+    @media print {
+      nav { display: none; }
+      body { background: white; color: #111; }
+      .card { break-inside: avoid; box-shadow: none; }
+      a { color: #111; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero page">
+    <div class="eyebrow">Dately data reference</div>
+    <h1>Free database files, separately listed.</h1>
+    <p class="lede">A practical catalog of the files needed to replace Dately’s external timezone and holiday calls. Each entry shows the actual file, its download location, what it supplies, and where it should live.</p>
+    <p class="stamp">Checked 24 September 2026 · Links point to the source project whenever a stable direct download is unavailable.</p>
+    <div class="callout"><strong>Short answer:</strong> use IANA/tzdata for timezone math, Timezone Boundary Builder for coordinates, GeoNames for places, CLDR for names and Windows mappings, and generated holiday JSON from <code>holidays</code> plus OpenHolidays. Keep the very large IP and polygon files outside the Python wheel.</div>
+  </header>
+
+  <nav aria-label="Page sections">
+    <div class="page">
+      <a href="#map">Quick map</a>
+      <a href="#timezone">Timezone files</a>
+      <a href="#geographic">Geographic files</a>
+      <a href="#holidays">Holiday files</a>
+      <a href="#ip">IP files</a>
+      <a href="#placement">Where they belong</a>
+      <a href="#plan">Recommended plan</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section id="map">
+      <h2>Which source answers which question?</h2>
+      <p class="section-intro">These are complementary datasets. They join together through IANA timezone IDs, ISO country codes, coordinates, or dates.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>File/source</th><th>Answer produced</th><th>Runtime?</th></tr></thead>
+          <tbody>
+            <tr><td>What is the correct offset at this date?</td><td>IANA TZDB / Python <code>tzdata</code></td><td><code>America/New_York → UTC−04:00</code></td><td class="yes">Yes, local</td></tr>
+            <tr><td>Which zone contains these coordinates?</td><td>Timezone Boundary Builder</td><td><code>40.71, −74.01 → America/New_York</code></td><td class="yes">Yes, optional</td></tr>
+            <tr><td>Where is this city?</td><td>GeoNames</td><td><code>London → coordinates + country</code></td><td class="yes">Yes, optional</td></tr>
+            <tr><td>What is this zone called in another language?</td><td>Unicode CLDR</td><td>Localized display name</td><td class="yes">Generated subset</td></tr>
+            <tr><td>Which IANA zone matches a Windows zone?</td><td>CLDR <code>windowsZones.xml</code></td><td><code>Eastern Standard Time → America/New_York</code></td><td class="yes">Generated subset</td></tr>
+            <tr><td>Is this date a public holiday?</td><td><code>vacanza/holidays</code> generated JSON</td><td>Date, name, country/subdivision</td><td class="yes">Yes, local</td></tr>
+            <tr><td>When are school holidays?</td><td>OpenHolidays data</td><td>Date ranges and regional scope</td><td class="yes">Optional/local</td></tr>
+            <tr><td>What timezone is this IP probably in?</td><td>DB-IP Lite + timezone polygons</td><td>IP → coordinates → IANA zone</td><td class="no">Server-side</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="timezone">
+      <h2>Timezone files</h2>
+      <p class="section-intro">These sources replace the damaged static offsets in <code>files/timezone_data.json</code>. Offsets must be calculated for a specific date because daylight-saving and historical rules change.</p>
+      <div class="grid">
+        <article class="card wide">
+          <div class="card-top"><span class="number">01</span><span class="tag license">Public domain</span></div>
+          <h3>IANA Time Zone Database</h3>
+          <p class="muted">The authoritative rules, transitions, aliases, and country-to-zone tables. Current release observed: <strong>2026d</strong>.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">tzdata-latest.tar.gz</div><div class="file-note">Data source files: zone rules, links, <code>zone.tab</code>, <code>zone1970.tab</code>, <code>iso3166.tab</code>.</div><a class="button" href="https://data.iana.org/time-zones/tzdata-latest.tar.gz">Download</a></div>
+            <div class="file"><div class="filename">tzcode-latest.tar.gz</div><div class="file-note">Reference tools and code used to compile/read TZDB. Usually not needed by Dately.</div><a class="button" href="https://data.iana.org/time-zones/tzcode-latest.tar.gz">Download</a></div>
+            <div class="file"><div class="filename">tzdb-latest.tar.lz</div><div class="file-note">Combined code and data distribution. Useful for a complete update pipeline.</div><a class="button" href="https://data.iana.org/time-zones/tzdb-latest.tar.lz">Download</a></div>
+            <div class="file"><div class="filename">versioned releases</div><div class="file-note">Pinned archives for reproducible builds and auditing changes between releases.</div><a class="button" href="https://www.iana.org/time-zones/releases">Browse releases</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><span class="number">02</span><span class="tag license">Apache-2.0</span></div>
+          <h3>Python <code>tzdata</code></h3>
+          <p>Compiled TZif files packaged for Python’s <code>zoneinfo</code>. This is especially useful on Windows, where an operating-system timezone database may be absent.</p>
+          <p class="muted"><strong>Location:</strong> install from PyPI; Python discovers its bundled <code>zoneinfo/</code> tree automatically.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">tzdata wheel</div><div class="file-note">Add <code>tzdata</code> as a Dately dependency; do not manually copy the internal TZif files.</div><a class="button" href="https://pypi.org/project/tzdata/">Package page</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><span class="number">03</span><span class="tag license">Unicode-3.0</span></div>
+          <h3>Unicode CLDR timezone metadata</h3>
+          <p>Names and interoperability mappings. CLDR complements IANA; it does not replace the actual timezone transition rules.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">windowsZones.xml</div><div class="file-note">Windows timezone IDs ↔ IANA zone IDs, with territory-aware mappings.</div><a class="button" href="https://raw.githubusercontent.com/unicode-org/cldr/main/common/supplemental/windowsZones.xml">Open raw file</a></div>
+            <div class="file"><div class="filename">metaZones.xml</div><div class="file-note">Maps IANA zones to CLDR metazones over historical periods.</div><a class="button" href="https://raw.githubusercontent.com/unicode-org/cldr/main/common/supplemental/metaZones.xml">Open raw file</a></div>
+            <div class="file"><div class="filename">common/main/*.xml</div><div class="file-note">Localized territory and timezone display names, one XML file per locale.</div><a class="button" href="https://github.com/unicode-org/cldr/tree/main/common/main">Browse locales</a></div>
+            <div class="file"><div class="filename">cldr-json release</div><div class="file-note">JSON form if the build pipeline should avoid parsing XML.</div><a class="button" href="https://github.com/unicode-org/cldr-json/releases">Browse releases</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="geographic">
+      <h2>Geographic and place files</h2>
+      <p class="section-intro">Timezone rules do not contain polygon borders or a city search index. These files provide those missing layers.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="card-top"><span class="number">04</span><span class="tag license">ODbL-1.0</span></div>
+          <h3>Timezone Boundary Builder</h3>
+          <p>Polygons carrying an IANA <code>tzid</code>. Choose “now” for present-day lookup or “1970” when historical consistency matters.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">timezones-now.geojson.zip</div><div class="file-note">Recommended starting file for present-day latitude/longitude lookup.</div><a class="button" href="https://github.com/evansiroky/timezone-boundary-builder/releases/latest/download/timezones-now.geojson.zip">Download</a></div>
+            <div class="file"><div class="filename">timezones-1970.geojson.zip</div><div class="file-note">Larger set preserving zones that differ after 1970.</div><a class="button" href="https://github.com/evansiroky/timezone-boundary-builder/releases/latest/download/timezones-1970.geojson.zip">Download</a></div>
+            <div class="file"><div class="filename">timezones-1970.shapefile.zip</div><div class="file-note">Same kind of data in ESRI Shapefile form for GIS/database tooling.</div><a class="button" href="https://github.com/evansiroky/timezone-boundary-builder/releases/latest/download/timezones-1970.shapefile.zip">Download</a></div>
+            <div class="file"><div class="filename">timezone-names*.json</div><div class="file-note">Small lists of the zone IDs represented by each polygon build.</div><a class="button" href="https://github.com/evansiroky/timezone-boundary-builder/releases/latest">All assets</a></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><span class="number">05</span><span class="tag license">CC BY 4.0</span></div>
+          <h3>GeoNames</h3>
+          <p>Tab-separated gazetteer data for place search, coordinates, country information, and alternate/localized names.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">cities15000.zip</div><div class="file-note">Best compact starting point: cities over 15,000 population plus capitals.</div><a class="button" href="https://download.geonames.org/export/dump/cities15000.zip">Download</a></div>
+            <div class="file"><div class="filename">cities500.zip</div><div class="file-note">Broader city index; larger than the 1,000/5,000/15,000 variants.</div><a class="button" href="https://download.geonames.org/export/dump/cities500.zip">Download</a></div>
+            <div class="file"><div class="filename">allCountries.zip</div><div class="file-note">Every GeoNames feature. Very large and unnecessary for basic city search.</div><a class="button" href="https://download.geonames.org/export/dump/allCountries.zip">Download</a></div>
+            <div class="file"><div class="filename">countryInfo.txt</div><div class="file-note">ISO codes, capital, languages, population, continent, and related country fields.</div><a class="button" href="https://download.geonames.org/export/dump/countryInfo.txt">Open file</a></div>
+            <div class="file"><div class="filename">timeZones.txt</div><div class="file-note">Country code, IANA ID, and snapshot offsets. Use IANA for calculations—not these snapshot offsets.</div><a class="button" href="https://download.geonames.org/export/dump/timeZones.txt">Open file</a></div>
+            <div class="file"><div class="filename">alternateNamesV2.zip</div><div class="file-note">Alternate and localized place names. Prefer V2; the older file is obsolete.</div><a class="button" href="https://download.geonames.org/export/dump/alternateNamesV2.zip">Download</a></div>
+            <div class="file"><div class="filename">XX.zip</div><div class="file-note">Per-country files; substitute a two-letter ISO code such as <code>US.zip</code> or <code>GB.zip</code>.</div><a class="button" href="https://download.geonames.org/export/dump/">Browse files</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="holidays">
+      <h2>Holiday files</h2>
+      <p class="section-intro">Holiday data is partly rule-based and partly curated. For Dately’s Python 3.8–3.14 support, generate version-neutral JSON instead of importing a Python-3.10+ holiday library at runtime.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="card-top"><span class="number">06</span><span class="tag license">MIT</span></div>
+          <h3><code>vacanza/holidays</code></h3>
+          <p>This is executable Python rule data, not one downloadable database file. Run it in a Python 3.10+ update job and export only the countries, subdivisions, years, and fields Dately supports.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">holidays source/release</div><div class="file-note">Country and subdivision rules with observed-day handling and names.</div><a class="button" href="https://github.com/vacanza/holidays/releases">Browse releases</a></div>
+            <div class="file"><div class="filename">generated holidays.json</div><div class="file-note">File Dately should produce itself; normalized output works on every supported Python version.</div><a class="button" href="https://holidays.readthedocs.io/en/latest/">Read docs</a></div>
+          </div>
+          <div class="codebox">{
+  "country": "US",
+  "subdivision": null,
+  "year": 2027,
+  "holidays": [
+    {"date": "2027-01-01", "name": "New Year's Day", "observed": false}
+  ]
+}</div>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><span class="number">07</span><span class="tag license">ODbL-1.0</span></div>
+          <h3>OpenHolidays raw data</h3>
+          <p>Repository-based public and school holiday source data, with strong European coverage and documented upstream government sources.</p>
+          <div class="file-list">
+            <div class="file"><div class="filename">src/</div><div class="file-note">The actual country-organized source data. Clone or download the repository to preserve the directory structure.</div><a class="button" href="https://github.com/openpotato/openholidaysapi.data/tree/develop/src">Browse data</a></div>
+            <div class="file"><div class="filename">develop.zip</div><div class="file-note">Snapshot of the full repository, including raw data and metadata.</div><a class="button" href="https://github.com/openpotato/openholidaysapi.data/archive/refs/heads/develop.zip">Download repository</a></div>
+            <div class="file"><div class="filename">LICENSE</div><div class="file-note">ODbL database terms; review attribution and share-alike duties before redistribution.</div><a class="button" href="https://github.com/openpotato/openholidaysapi.data/blob/develop/LICENSE">Read license</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="ip">
+      <h2>IP geolocation files</h2>
+      <p class="section-intro">An IP database only estimates a location. To get an IANA timezone, join the resulting coordinates against Timezone Boundary Builder polygons.</p>
+      <div class="decision" aria-label="IP-to-timezone lookup pipeline">
+        <div class="step"><strong>DB-IP City Lite</strong>IP address → approximate latitude and longitude</div>
+        <div class="arrow">→</div>
+        <div class="step"><strong>Timezone polygons</strong>Point-in-polygon lookup</div>
+        <div class="arrow">→</div>
+        <div class="step"><strong>IANA zone</strong><code>America/New_York</code></div>
+      </div>
+      <article class="card" style="margin-top:16px">
+        <div class="card-top"><span class="number">08</span><span class="tag license">CC BY 4.0</span></div>
+        <h3>DB-IP City Lite</h3>
+        <p class="muted">Updated monthly. At the time checked: about 7.75 million records; approximately 658 MB CSV or 121 MB MMDB. Download URLs are release-specific, so use the official download page.</p>
+        <div class="file-list">
+          <div class="file"><div class="filename">dbip-city-lite-YYYY-MM.csv.gz</div><div class="file-note">Range-oriented CSV, convenient for ETL or importing into a database.</div><a class="button" href="https://db-ip.com/db/download/ip-to-city-lite">Choose CSV</a></div>
+          <div class="file"><div class="filename">dbip-city-lite-YYYY-MM.mmdb.gz</div><div class="file-note">Compact MaxMind DB format for fast local/server lookups.</div><a class="button" href="https://db-ip.com/db/download/ip-to-city-lite">Choose MMDB</a></div>
+        </div>
+        <p class="fine-print"><strong>Attribution required:</strong> DB-IP specifies visible attribution, including a link for web applications that display or use results. Accuracy is intentionally lower than its paid database.</p>
+      </article>
+    </section>
+
+    <section id="placement">
+      <h2>Where each file should live</h2>
+      <p class="section-intro">“Free to download” does not mean “small enough or licensed appropriately to bundle in every wheel.”</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Suggested Dately location</th><th>Ship in wheel?</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>Python <code>tzdata</code></td><td>Declared dependency</td><td class="yes">Yes</td><td>Small, standard, and handles Windows cleanly.</td></tr>
+            <tr><td>Windows ↔ IANA map</td><td><code>files/windows_zones.json</code> generated from CLDR</td><td class="yes">Yes</td><td>A compact derived subset.</td></tr>
+            <tr><td>Country/zone names</td><td><code>files/timezone_names.json</code> generated from IANA/CLDR</td><td class="yes">Yes</td><td>Bundle only the fields/locales the API exposes.</td></tr>
+            <tr><td>Public holidays</td><td><code>files/holidays/*.json</code> generated by year</td><td class="yes">Maybe</td><td>Bundle a documented year window or download optional packs.</td></tr>
+            <tr><td>GeoNames city index</td><td>Optional data pack/cache</td><td class="no">Usually no</td><td>Size grows quickly; city search can be an extra.</td></tr>
+            <tr><td>Timezone polygons</td><td>Optional data pack or service database</td><td class="no">No</td><td>Tens of MB compressed and ODbL obligations apply.</td></tr>
+            <tr><td>DB-IP City Lite</td><td>Private server data directory</td><td class="no">No</td><td>Hundreds of MB, monthly updates, visible attribution.</td></tr>
+            <tr><td>OpenHolidays raw repository</td><td>Build/update workspace</td><td class="no">No</td><td>Normalize only the required records and preserve licensing metadata.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="plan">
+      <h2>Recommended first implementation</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="number">A</span>
+          <h3>Restore TimeZoner without web APIs</h3>
+          <p>Add <code>tzdata</code>, use <code>zoneinfo</code> for date-aware calculations, and generate a small IANA/CLDR metadata file. This fixes the current offset problem without introducing the geographic datasets.</p>
+        </article>
+        <article class="card">
+          <span class="number">B</span>
+          <h3>Restore Holidate from generated JSON</h3>
+          <p>Create a Python 3.10+ update script using <code>holidays</code>; output normalized JSON consumed by Dately on Python 3.8–3.14. Add OpenHolidays later for school dates and gaps.</p>
+        </article>
+        <article class="card">
+          <span class="number">C</span>
+          <h3>Add location lookup as an optional extra</h3>
+          <p>Use <code>cities15000.zip</code> for a manageable city index and <code>timezones-now.geojson.zip</code> for coordinates. Keep both out of the base wheel.</p>
+        </article>
+        <article class="card">
+          <span class="number">D</span>
+          <h3>Leave IP lookup on the server</h3>
+          <p>Load DB-IP MMDB server-side, obtain coordinates, and query the timezone polygons. This replaces the current IP API without shipping a huge database to every Python user.</p>
+        </article>
+      </div>
+      <div class="callout"><strong>Important licensing point:</strong> IANA, Apache-2.0, MIT, CC BY, Unicode-3.0, and ODbL are not interchangeable. Keep each source’s license and attribution in the update pipeline, and review ODbL obligations before distributing a derived database.</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page">Dately data-source guide · Self-contained HTML · No external scripts, fonts, or stylesheets.</div>
+  </footer>
+</body>
+</html>
